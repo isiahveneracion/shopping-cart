@@ -24,4 +24,4 @@ Libraries Used
 
 Images of Shopping Cart
 
-![image alt][https://github.com/isiahveneracion/shopping-cart/blob/2983b4a2c575f1d91df1e72ac3ac0ee223f058a6/images/productlist.png]
+![image alt](https://github.com/isiahveneracion/shopping-cart/blob/2983b4a2c575f1d91df1e72ac3ac0ee223f058a6/images/productlist.png)
