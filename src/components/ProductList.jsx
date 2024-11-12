@@ -1,4 +1,3 @@
-// src/components/ProductList.js
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/styles.css";
@@ -7,6 +6,7 @@ const ProductList = ({ cart, setCart }) => {
   const [products, setProducts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [loading, setLoading] = useState(true);
+  const [message, setMessage] = useState(""); // State for the pop-up message
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -39,6 +39,14 @@ const ProductList = ({ cart, setCart }) => {
         return [...prevCart, { ...product, quantity: 1 }];
       }
     });
+    showMessage(`${product.title} added to cart!`); // Show message when a product is added
+  };
+
+  const showMessage = (msg) => {
+    setMessage(msg);
+    setTimeout(() => {
+      setMessage(""); // Clear message after 3 seconds
+    }, 3000);
   };
 
   const filteredProducts = products.filter((product) =>
@@ -61,7 +69,7 @@ const ProductList = ({ cart, setCart }) => {
           placeholder="Search products..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="search-input" // Add a class for styling
+          className="search-input"
         />
       </div>
       {loading ? (
@@ -78,6 +86,8 @@ const ProductList = ({ cart, setCart }) => {
           ))}
         </div>
       )}
+      {message && <div className="popup-message">{message}</div>}{" "}
+      {/* Render the message */}
     </div>
   );
 };

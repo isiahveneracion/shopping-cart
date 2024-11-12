@@ -210,3 +210,39 @@ button:hover {
     width: 100%; /* Make images responsive on mobile */
   }
 }
+
+.popup-message {
+  position: fixed;
+
+  top: 20px;
+
+  right: 20px;
+
+  background-color: #007bff;
+
+  color: white;
+
+  padding: 10px 20px;
+
+  border-radius: 5px;
+
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+
+  z-index: 1000; /* Ensure it appears above other content */
+
+  transition: opacity 0.3s ease;
+
+  opacity: 0.9; /* Slightly transparent */
+
+  animation: fadeIn 0.5s; /* Fade-in animation */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 0.9;
+  }
+}
