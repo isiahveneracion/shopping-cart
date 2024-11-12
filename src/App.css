@@ -36,3 +36,13 @@
     transform: rotate(360deg);
   }
 }
+
+.header {
+  display: flex; /* Use flexbox for layout */
+
+  justify-content: space-between; /* Space between elements */
+
+  align-items: center; /* Center items vertically */
+
+  margin-bottom: 20px; /* Add some margin below the header */
+}

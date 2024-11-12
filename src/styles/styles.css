@@ -246,3 +246,35 @@ button:hover {
     opacity: 0.9;
   }
 }
+
+.header {
+  display: flex;
+
+  justify-content: space-between; /* Space between elements */
+
+  align-items: center; /* Center items vertically */
+
+  margin-bottom: 20px; /* Add some margin below the header */
+}
+
+.view-cart-button {
+  background-color: #007bff; /* Button background color */
+
+  color: white; /* Button text color */
+
+  border: none; /* Remove border */
+
+  padding: 10px 15px; /* Padding for the button */
+
+  border-radius: 5px; /* Rounded corners */
+
+  cursor: pointer; /* Pointer cursor on hover */
+
+  font-size: 1rem; /* Font size */
+
+  transition: background-color 0.3s; /* Transition for background color */
+}
+
+.view-cart-button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
