@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/styles.css";
 
@@ -53,15 +53,44 @@ const ProductList = ({ cart, setCart }) => {
     product.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  const removeFromCart = (id) => {
+    setCart(cart.filter((item) => item.id !== id));
+  };
+
+  const clearCart = () => {
+    setCart([]); // Clear the cart
+    showMessage("All items removed from cart!"); // Show message when cart is cleared
+  };
+
+  const increaseQuantity = (id) => {
+    setCart(
+      cart.map((item) =>
+        item.id === id ? { ...item, quantity: item.quantity + 1 } : item
+      )
+    );
+  };
+
+  const decreaseQuantity = (id) => {
+    setCart(
+      cart.map((item) =>
+        item.id === id && item.quantity > 1
+          ? { ...item, quantity: item.quantity - 1 }
+          : item
+      )
+    );
+  };
+
+  const totalAmount = cart.reduce(
+    (total, item) => total + item.price * item.quantity,
+    0
+  );
+
   const totalQuantity = cart.reduce((total, item) => total + item.quantity, 0);
 
   return (
     <div className="container">
       <div className="header">
         <h2>Product List</h2>
-        <button className="view-cart-button" onClick={() => navigate("/cart")}>
-          View Cart ({totalQuantity})
-        </button>
       </div>
       <div className="search-cart-container">
         <input
@@ -72,20 +101,73 @@ const ProductList = ({ cart, setCart }) => {
           className="search-input"
         />
       </div>
-      {loading ? (
-        <p>Loading products...</p>
-      ) : (
+      <div className="main-content">
         <div className="product-items">
-          {filteredProducts.map((product) => (
-            <div key={product.id} className="product-card">
-              <img src={product.images[0]} alt={product.title} />
-              <h3>{product.title}</h3>
-              <p className="product-price">${product.price}</p>
-              <button onClick={() => addToCart(product)}>Add to Cart</button>
-            </div>
-          ))}
+          {loading ? (
+            <p>Loading products...</p>
+          ) : (
+            filteredProducts.map((product) => (
+              <div key={product.id} className="product-card">
+                <img src={product.images[0]} alt={product.title} />
+                <h3>{product.title}</h3>
+                <p className="product-price">${product.price}</p>
+                <button onClick={() => addToCart(product)}>Add to Cart</button>
+              </div>
+            ))
+          )}
         </div>
-      )}
+        {/* Cart Display */}
+        <div className="cart">
+          <h3>Your Cart</h3>
+          {cart.length === 0 ? (
+            <p>Your cart is empty.</p>
+          ) : (
+            <div className="cart-items">
+              {cart.map((item) => {
+                const product = products.find((prod) => prod.id === item.id);
+                return (
+                  <div key={item.id} className="cart-item">
+                    {product && (
+                      <>
+                        <img
+                          src={product.images[0]}
+                          alt={product.title}
+                          style={{ width: "100px", height: "auto" }}
+                        />
+                        <h4>{product.title}</h4>
+                        <div className="quantity-controls">
+                          <button onClick={() => decreaseQuantity(item.id)}>
+                            -
+                          </button>
+                          <span>{item.quantity}</span>
+                          <button onClick={() => increaseQuantity(item.id)}>
+                            +
+                          </button>
+                        </div>
+                        <p>Price per item: ${product.price.toFixed(2)}</p>
+                        <p>
+                          Total price: $
+                          {(product.price * item.quantity).toFixed(2)}
+                        </p>
+                        <button onClick={() => removeFromCart(item.id)}>
+                          Remove
+                        </button>
+                      </>
+                    )}
+                  </div>
+                );
+              })}
+              <h4>Total Amount: ${totalAmount.toFixed(2)}</h4>
+              <button onClick={clearCart} className="remove-all-button">
+                Remove All
+              </button>
+              <button onClick={() => navigate("/checkout")}>
+                Proceed to Checkout
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
       {message && <div className="popup-message">{message}</div>}{" "}
       {/* Render the message */}
     </div>
