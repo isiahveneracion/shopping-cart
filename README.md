@@ -52,14 +52,31 @@ npm start
    Click the "Pay" button to finalize your order.
    A confirmation message will appear saying "Payment successful!", indicating that your order has been successfully placed.
 
-Libraries Used
-├── React
-
-├── React Router DOM
-
+Shopping Cart
+├── bootstrap
+├── react-bootstrap
 ├── usehooks-ts
-
-├── CSS (for styling)
+├── react
+├── react-dom
+├── @babel/runtime
+├── @popperjs/core
+├── @react-aria/ssr
+├── @restart
+│ ├── hooks
+│ └── ui
+├── @swc/helpers
+├── classnames
+├── csstype
+├── dequal
+├── dom-helpers
+├── invariant
+├── lodash.debounce
+├── loose-envify
+├── object-assign
+├── prop-types
+├── prop-types-extra
+├── react-transition-group
+└── uncontrollable
 
 Images of Shopping Cart
 
