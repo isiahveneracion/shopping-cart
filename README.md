@@ -54,8 +54,11 @@ npm start
 
 Libraries Used
 ├── React
+
 ├── React Router DOM
+
 ├── usehooks-ts
+
 ├── CSS (for styling)
 
 Images of Shopping Cart
