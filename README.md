@@ -13,7 +13,9 @@ To run the project locally, follow these steps:
    ```
 
 -cd shopping-cart
+
 -npm install\*
+
 -npm start
 
 1. Browse Products
