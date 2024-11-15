@@ -12,9 +12,9 @@ To run the project locally, follow these steps:
    git clone https://github.com/isiahveneracion/shopping-cart.git
    ```
 
-cd shopping-cart
-npm install\*
-npm start
+-cd shopping-cart
+-npm install\*
+-npm start
 
 1. Browse Products
 
